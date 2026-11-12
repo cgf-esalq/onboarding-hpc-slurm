@@ -17,7 +17,7 @@ Para utilizá-los, copie os arquivos `.sh` para a pasta `scripts/` do seu projet
 - [1. Entenda onde o trabalho acontece](#1-entenda-onde-o-trabalho-acontece)
 - [2. Faça o primeiro acesso](#2-faça-o-primeiro-acesso)
 - [3. Configure uma chave SSH](#3-configure-uma-chave-ssh)
-- [4. Crie o atalho biotec](#4-crie-o-atalho-biotec)
+- [4. Crie o atalho biotec02](#4-crie-o-atalho-biotec02)
 - [5. Copie arquivos](#5-copie-arquivos)
 - [6. Conecte a IDE](#6-conecte-a-ide)
 - [7. Organize o projeto e o ambiente](#7-organize-o-projeto-e-o-ambiente)
@@ -171,7 +171,7 @@ ssh -p 59020 seu_usuario@biotec02.esalq.usp.br
 
 Se a chave estiver protegida e ainda não tiver sido desbloqueada pelo agente SSH, você poderá receber uma solicitação da frase-senha. Após conferir o acesso, use `exit` para voltar ao terminal local.
 
-## 4. Crie o atalho biotec
+## 4. Crie o atalho biotec02
 
 **No computador pessoal**, edite o arquivo de configuração do cliente SSH:
 
@@ -187,7 +187,7 @@ notepad "$env:USERPROFILE\.ssh\config"
 Salve o arquivo como `config`, sem a extensão `.txt`. Insira este conteúdo, ajustando o usuário:
 
 ```ssh-config
-Host biotec
+Host biotec02
     HostName biotec02.esalq.usp.br
     Port 59020
     User seu_usuario
@@ -198,7 +198,7 @@ Host biotec
 Agora a conexão local pode ser feita com:
 
 ```bash
-ssh biotec
+ssh biotec02
 ```
 
 O cliente lê o endereço, o usuário, a porta e o caminho da chave no arquivo de configuração. Use as chaves e o arquivo `config` do mesmo cliente: o OpenSSH do Windows e o OpenSSH dentro do WSL podem usar diretórios pessoais diferentes.
@@ -209,13 +209,13 @@ O cliente lê o endereço, o usuário, a porta e o caminho da chave no arquivo d
 
 ```bash
 # Crie o destino no servidor.
-ssh biotec 'mkdir -p ~/meu_projeto'
+ssh biotec02 'mkdir -p ~/meu_projeto'
 
 # Envie um arquivo local.
-scp arquivo.tsv biotec:~/meu_projeto/
+scp arquivo.tsv biotec02:~/meu_projeto/
 
 # Baixe esse arquivo para a pasta local atual.
-scp biotec:~/meu_projeto/arquivo.tsv .
+scp biotec02:~/meu_projeto/arquivo.tsv .
 ```
 
 Sem o atalho, informe a porta explicitamente:
@@ -234,7 +234,7 @@ Uma IDE reúne editor, explorador de arquivos e terminal. O exemplo da aula usa 
 
 1. Abra o VS Code e instale a extensão **Remote - SSH**, da Microsoft.
 2. Abra a paleta de comandos e escolha **Remote-SSH: Connect to Host...**.
-3. Selecione `biotec`, definido no arquivo `config`.
+3. Selecione `biotec02`, definido no arquivo `config`.
 4. Se solicitado, indique que o servidor remoto é Linux.
 5. Use **Open Folder** para abrir a pasta do seu projeto em `/home/seu_usuario/`.
 
@@ -573,7 +573,7 @@ srun --partition=long \
 | `ssh` não é reconhecido no Windows | Disponibilidade do Cliente OpenSSH |
 | Continua pedindo senha da conta | Usuário, chave instalada, caminho de `IdentityFile` e permissões de `.ssh`/`authorized_keys` |
 | Pede frase-senha da chave | A chave está protegida; desbloqueie-a ou use o agente SSH configurado no seu sistema |
-| `scp` tenta usar a porta errada | Use `-P 59020` ou o atalho `biotec` |
+| `scp` tenta usar a porta errada | Use `-P 59020` ou o atalho `biotec02` |
 | PowerShell falha ao colar várias linhas | Use acento grave, sem espaços depois; não use `\` como continuação |
 | Identidade do host mudou | Confirme a mudança com a administração antes de alterar `known_hosts` |
 | Job permanece em `PD` | Consulte o motivo no `squeue` e os detalhes em `scontrol show job ID` |
@@ -589,7 +589,7 @@ srun --partition=long \
 - [ ] Consegui conectar ao head node pela porta `59020`.
 - [ ] Sei distinguir o computador pessoal, o head node e os nós de computação.
 - [ ] Instalei somente a chave pública e testei a autenticação.
-- [ ] Configurei `ssh biotec` com `Port 59020`.
+- [ ] Configurei `ssh biotec02` com `Port 59020`.
 - [ ] Sei quando usar `\` no Bash e acento grave no PowerShell.
 - [ ] Conectei a IDE e confirmei o host do terminal remoto.
 - [ ] Organizei o projeto e criei `logs/` antes da submissão.
