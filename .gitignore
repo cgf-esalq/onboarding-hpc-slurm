@@ -1,0 +1,34 @@
+# Dados, resultados e logs de execução
+/data/
+/results/
+/logs/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.sam
+*.vcf
+*.vcf.gz
+
+# Credenciais e configuração local
+.env
+.env.*
+!.env.example
+.ssh/
+id_ed25519*
+id_rsa*
+*.pem
+
+# Apresentações e prévias: distribuir separadamente do código-fonte
+*.pptx
+*.pdf
+*.png
+*.jpg
+*.zip
+
+# Arquivos temporários
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
